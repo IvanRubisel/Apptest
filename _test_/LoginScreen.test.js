@@ -21,11 +21,9 @@ describe("LoginScreen Component", () => {
   it("muestra un mensaje de bienvenida al iniciar sesión", () => {
     const { getByPlaceholderText, getByText } = render(<LoginScreen />);
     
-    // Completar los campos
     fireEvent.changeText(getByPlaceholderText("Correo electrónico"), "test@example.com");
     fireEvent.changeText(getByPlaceholderText("Contraseña"), "123456");
     
-    // Simular presionar el botón
     fireEvent.press(getByText("Iniciar sesión"));
 
     expect(Alert.alert).toHaveBeenCalledWith("Bienvenido", "¡Hola, test@example.com!");
@@ -34,7 +32,6 @@ describe("LoginScreen Component", () => {
   it("renderiza correctamente el formulario", () => {
     const { getByPlaceholderText, getByText } = render(<LoginScreen />);
 
-    // Verificar los campos y botones
     expect(getByPlaceholderText("Correo electrónico")).toBeTruthy();
     expect(getByPlaceholderText("Contraseña")).toBeTruthy();
     expect(getByText("Iniciar sesión")).toBeTruthy();

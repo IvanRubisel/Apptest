@@ -5,7 +5,7 @@
     </testcase>
     <testcase classname="LoginScreen Component muestra un mensaje de bienvenida al iniciar sesión" name="LoginScreen Component muestra un mensaje de bienvenida al iniciar sesión" time="0.022">
     </testcase>
-    <testcase classname="LoginScreen Component renderiza correctamente el formulario" name="LoginScreen Component renderiza correctamente el formulario" time="0.009">
+    <testcase classname="LoginSc reen Component renderiza correctamente el formulario" name="LoginScreen Component renderiza correctamente el formulario" time="0.009">
     </testcase>
   </testsuite>
   <testsuite name="App Component" errors="0" failures="0" skipped="0" timestamp="2024-11-28T07:19:00" time="1.107" tests="1">
