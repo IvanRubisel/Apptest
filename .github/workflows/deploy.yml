@@ -22,9 +22,10 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Run tests
+        id: run-tests
         run: |
           mkdir -p ./test-results
-          npm test > ./test-results/test-results.xml || true
+          npm test > ./test-results/test-results.xml || exit 1
 
       - name: Save test results
         if: always()
@@ -59,7 +60,7 @@ jobs:
             -d "$PAYLOAD"
 
       - name: Merge to master and create tag
-        if: success()
+        if: steps.run-tests.outcome == 'success'
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
