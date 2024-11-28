@@ -3,21 +3,18 @@ import { render, fireEvent } from "@testing-library/react-native";
 import { Alert } from "react-native";
 import LoginScreen from "../views/LoginScreen";
 
-// Mock de Alert
 jest.spyOn(Alert, "alert");
 
 describe("LoginScreen Component", () => {
   beforeEach(() => {
-    jest.clearAllMocks(); // Limpia los mocks antes de cada prueba
+    jest.clearAllMocks(); 
   });
 
   it("muestra un error si los campos están vacíos", () => {
     const { getByText } = render(<LoginScreen />);
     
-    // Simular presionar el botón sin completar campos
     fireEvent.press(getByText("Iniciar sesión"));
 
-    // Verificar que Alert fue llamado con el mensaje de error
     expect(Alert.alert).toHaveBeenCalledWith("Error", "Por favor, completa todos los campos.");
   });
 
