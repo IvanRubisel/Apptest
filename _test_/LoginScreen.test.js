@@ -28,7 +28,6 @@ describe("LoginScreen Component", () => {
     // Simular presionar el botón
     fireEvent.press(getByText("Iniciar sesión"));
 
-    // Verificar que Alert fue llamado con el mensaje de bienvenida
     expect(Alert.alert).toHaveBeenCalledWith("Bienvenido", "¡Hola, test@example.com!");
   });
 
