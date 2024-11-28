@@ -30,13 +30,15 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-          # Hacer merge a la rama master
+          # Hacer merge a la rama master con preferencia por los cambios de develop
           git fetch origin master
           git checkout master
-          git merge origin/develop --no-ff --allow-unrelated-histories -m "Auto-merge from dev to master (tests passed)"
+          git merge origin/develop --no-ff --allow-unrelated-histories -X theirs -m "Auto-merge from develop to master (tests passed)"
 
           # Crear un tag con la fecha y hora
           TAG="v$(date +'%Y%m%d%H%M%S')"
           git tag $TAG
-          git push origin master
-          git push origin $TAG
+
+          # Autenticarse usando el Personal Access Token para el push
+          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/IvanRubisel/Apptest.git master
+          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/IvanRubisel/Apptest.git $TAG
