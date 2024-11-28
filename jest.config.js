@@ -5,7 +5,7 @@ module.exports = {
     'node_modules/(?!react-native|@react-native|expo|@expo|@unimodules|unimodules)',
   ],
   testPathIgnorePatterns: ['/node_modules/', '/android/', '/ios/'],
-  coverageDirectory: './coverage', // Genera reportes de cobertura
+  coverageDirectory: './coverage',
   reporters: [
     "default",
     [
