@@ -1,0 +1,26 @@
+stages:
+  - install
+  - test
+
+# Usa un runner con Node.js preinstalado
+default:
+  before_script:
+    - echo "Iniciando instalación..."
+    - npm ci # Instala dependencias de manera limpia
+
+install-job:
+  stage: install
+  script:
+    - echo "Instalación de dependencias completada."
+
+test-job:
+  stage: test
+  script:
+    - echo "Ejecutando pruebas..."
+    - npm test # Ejecuta las pruebas
+  artifacts:
+    when: always
+    paths:
+      - coverage/ # Guarda cobertura si está configurada
+    reports:
+      junit: coverage/junit.xml # Reporte opcional para CI/CD
