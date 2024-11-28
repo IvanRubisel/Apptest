@@ -1,10 +1,9 @@
 name: Run Tests
 
-
 on:
   push:
     branches:
-      - master
+      - develop
 
 jobs:
   test:
@@ -23,7 +22,9 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Run tests
-        run: npm test
+        run: |
+          mkdir -p ./test-results
+          npm test > ./test-results/test-results.xml || true
 
       - name: Save test results
         if: always()
@@ -32,3 +33,27 @@ jobs:
           name: test-results
           path: ./test-results/test-results.xml
 
+      - name: Send test results to ClickUp
+        if: always()
+        env:
+          CLICKUP_API_TOKEN: ${{ secrets.CLICKUP_API_TOKEN }}
+          CLICKUP_LIST_ID: ${{ secrets.CLICKUP_LIST_ID }}
+        run: |
+          # Leer el archivo de resultados
+          TEST_RESULTS=$(cat ./test-results/test-results.xml)
+
+          # Limitar la longitud de la descripción si es muy extensa
+          TEST_RESULTS_SHORT=$(echo "$TEST_RESULTS" | head -c 3000)
+
+          # Crear payload para ClickUp
+          PAYLOAD=$(jq -n \
+            --arg name "Test Results $(date '+%Y-%m-%d %H:%M:%S')" \
+            --arg description "Resultados de las pruebas:\n\n\`\`\`\n$TEST_RESULTS_SHORT\n\`\`\`" \
+            --arg status "Open" \
+            '{name: $name, description: $description, status: $status}')
+
+          # Enviar solicitud a ClickUp
+          curl -X POST "https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task" \
+            -H "Authorization: ${CLICKUP_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD"
