@@ -12,9 +12,19 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // const handleLogin = () => {
+  //   if (email === "" || password === "") {
+  //     Alert.alert("Error", "Por favor, completa todos los campos.");
+  //   } else {
+  //     Alert.alert("Bienvenido", `¡Hola, ${email}!`);
+  //   }
+  // };
+
   const handleLogin = () => {
     if (email === "" || password === "") {
       Alert.alert("Error", "Por favor, completa todos los campos.");
+    } else if (email !== "usuario@valido.com") {
+      Alert.alert("Error", "Usuario o contraseña incorrectos."); 
     } else {
       Alert.alert("Bienvenido", `¡Hola, ${email}!`);
     }
