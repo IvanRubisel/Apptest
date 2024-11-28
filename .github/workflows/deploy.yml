@@ -42,5 +42,5 @@ jobs:
           git push origin $TAG
 
            # Autenticarse usando GITHUB_TOKEN para el push
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/IvanRubisel/Apptest.git master
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/IvanRubisel/Apptest.git $TAG
+          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/IvanRubisel/Apptest.git master
+          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/IvanRubisel/Apptest.git $TAG
