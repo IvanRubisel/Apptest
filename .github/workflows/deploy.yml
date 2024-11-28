@@ -3,7 +3,7 @@ name: Deploy to Master with Tests
 on:
   push:
     branches:
-      - dev 
+      - develop
 
 jobs:
   test-and-deploy:
