@@ -33,7 +33,7 @@ jobs:
           # Hacer merge a la rama master
           git fetch origin master
           git checkout master
-          git merge dev --no-ff -m "Auto-merge from dev to master (tests passed)"
+          git merge develop --no-ff -m "Auto-merge from dev to master (tests passed)"
 
           # Crear un tag con la fecha y hora
           TAG="v$(date +'%Y%m%d%H%M%S')"
