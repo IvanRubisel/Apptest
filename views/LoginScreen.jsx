@@ -29,6 +29,7 @@ const LoginScreen = () => {
   //     Alert.alert("Bienvenido", `¡Hola, ${email}!`);
   //   }
   // };
+  
 
   return (
     <View style={styles.container}>
