@@ -21,7 +21,6 @@ describe("LoginScreen Component", () => {
   it("muestra un mensaje de bienvenida al iniciar sesión", () => {
     const { getByPlaceholderText, getByText } = render(<LoginScreen />);
     
-    // Completar los campos
     fireEvent.changeText(getByPlaceholderText("Correo electrónico"), "test@example.com");
     fireEvent.changeText(getByPlaceholderText("Contraseña"), "123456");
     
